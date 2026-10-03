@@ -1,0 +1,34 @@
+.cart-controls {
+  flex-wrap: wrap;
+  align-items: end;
+}
+
+.cart-controls label {
+  display: grid;
+  gap: 4px;
+  color: #64748b;
+  font-size: 11px;
+}
+
+.cart-controls input {
+  width: 90px;
+}
+
+.cart-panel .cart-total.order-totals {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 8px;
+}
+
+.cart-panel .cart-total.order-totals > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.cart-panel .cart-total.order-totals > div:last-child {
+  padding-top: 8px;
+  border-top: 1px solid #e2e8f0;
+  font-weight: 700;
+}

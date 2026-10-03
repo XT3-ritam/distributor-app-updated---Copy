@@ -1,0 +1,282 @@
+.packing-page {
+  min-height: 100vh;
+  padding: 26px;
+  background: #eef2f7;
+}
+
+.packing-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  max-width: 980px;
+  margin: 0 auto 18px;
+}
+
+.packing-sheet {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 44px 52px;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 18px 45px rgb(15 23 42 / 8%);
+  color: #0f172a;
+}
+
+.packing-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: flex-start;
+  padding-bottom: 26px;
+  border-bottom: 2px solid #0f172a;
+}
+
+.packing-eyebrow,
+.packing-date span,
+.packing-invoices > span {
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.packing-header h1 {
+  margin: 8px 0 4px;
+  font-size: clamp(30px, 5vw, 42px);
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+}
+
+.packing-header p {
+  margin: 0;
+  color: #64748b;
+}
+
+.packing-date {
+  display: grid;
+  gap: 6px;
+  padding: 13px 16px;
+  border-radius: 12px;
+  background: #f1f5f9;
+  white-space: nowrap;
+}
+
+.packing-date strong {
+  font-size: 14px;
+}
+
+.packing-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 22px 0;
+}
+
+.packing-stats > div {
+  display: grid;
+  gap: 6px;
+  padding: 15px 18px;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  background: linear-gradient(145deg, #fff, #f8fafc);
+}
+
+.packing-stats span {
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.packing-stats strong {
+  font-size: 25px;
+}
+
+.packing-invoices {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  padding: 15px 18px;
+  margin-bottom: 22px;
+  border-left: 4px solid #2563eb;
+  border-radius: 0 12px 12px 0;
+  background: #eff6ff;
+}
+
+.packing-invoices > span {
+  padding-top: 3px;
+  color: #1d4ed8;
+}
+
+.packing-invoices > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.packing-invoices strong {
+  padding: 5px 10px;
+  border: 1px solid #bfdbfe;
+  border-radius: 99px;
+  background: #fff;
+  font-size: 12px;
+}
+
+.packing-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.packing-table th {
+  padding: 12px 14px;
+  background: #0f172a;
+  color: #fff;
+  font-size: 11px;
+  letter-spacing: 0.07em;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.packing-table th:first-child {
+  border-radius: 10px 0 0 0;
+}
+
+.packing-table th:last-child {
+  border-radius: 0 10px 0 0;
+}
+
+.packing-table td {
+  padding: 15px 14px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.packing-table tbody tr:nth-child(even) {
+  background: #f8fafc;
+}
+
+.packing-number {
+  width: 56px;
+  color: #64748b;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.packing-quantity {
+  font-size: 16px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.packing-check-heading,
+.packing-check {
+  width: 100px;
+  text-align: center !important;
+}
+
+.packing-check span {
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  border: 2px solid #94a3b8;
+  border-radius: 5px;
+}
+
+.packing-empty {
+  padding: 28px !important;
+  color: #64748b;
+  text-align: center;
+}
+
+.packing-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  margin-top: 22px;
+  padding-top: 14px;
+  border-top: 1px solid #cbd5e1;
+  color: #64748b;
+  font-size: 11px;
+}
+
+.packing-footer strong {
+  color: #0f172a;
+  white-space: nowrap;
+}
+
+.packing-message {
+  max-width: 980px;
+  padding: 24px;
+  margin: 0 auto;
+  border-radius: 14px;
+  background: #fff;
+  color: #64748b;
+}
+
+@media (max-width: 600px) {
+  .packing-page {
+    padding: 12px;
+  }
+
+  .packing-sheet {
+    padding: 24px 18px;
+    border-radius: 14px;
+  }
+
+  .packing-header {
+    flex-direction: column;
+  }
+
+  .packing-date {
+    width: 100%;
+  }
+
+  .packing-stats > div {
+    padding: 12px 10px;
+  }
+
+  .packing-stats span {
+    font-size: 10px;
+  }
+
+  .packing-stats strong {
+    font-size: 20px;
+  }
+
+  .packing-table th,
+  .packing-table td {
+    padding: 11px 8px;
+  }
+}
+
+@page {
+  size: A4 portrait;
+  margin: 12mm;
+}
+
+@media print {
+  .packing-page {
+    min-height: 0;
+    padding: 0;
+    background: #fff;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .packing-actions {
+    display: none !important;
+  }
+
+  .packing-sheet {
+    width: 100%;
+    max-width: none;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .packing-table tr {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}

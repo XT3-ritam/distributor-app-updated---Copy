@@ -1,0 +1,10 @@
+ALTER TABLE products
+  ADD COLUMN IF NOT EXISTS pack_weight_kg NUMERIC(12,6);
+
+UPDATE products
+SET unit = 'KG'
+WHERE UPPER(COALESCE(unit, '')) IN ('KG', 'KGS', 'KILOGRAM', 'KILOGRAMS');
+
+UPDATE products
+SET unit = 'PACKET'
+WHERE UPPER(COALESCE(unit, '')) IN ('PACKET', 'PACKETS', 'PCS', 'PIECE', 'PIECES');

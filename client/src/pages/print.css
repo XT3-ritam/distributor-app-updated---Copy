@@ -1,0 +1,186 @@
+.print-page .invoice-copy {
+  width: min(100%, 297mm);
+  min-height: 0;
+  margin: 0 auto 16px;
+  padding: 8mm;
+  border: 1px solid #111;
+  background: #fff;
+  color: #111;
+  font-size: 10px;
+}
+
+.invoice-copy .invoice-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 12mm;
+  padding-bottom: 5mm;
+  border-bottom: 2px solid #111;
+}
+
+.invoice-company h1 {
+  margin: 0 0 2mm;
+  font-size: 20px;
+}
+
+.invoice-title {
+  min-width: 48mm;
+  text-align: right;
+}
+
+.invoice-title h2 {
+  margin: 0 0 3mm;
+  font-size: 18px;
+}
+
+.invoice-number {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.invoice-meta {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 8mm;
+  padding: 5mm 0;
+  border-bottom: 1px solid #555;
+  line-height: 1.5;
+}
+
+.invoice-meta h3,
+.invoice-tax-summary h3 {
+  margin: 0 0 2mm;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.invoice-table {
+  width: 100%;
+  margin-top: 5mm;
+  table-layout: auto;
+}
+
+.invoice-table th,
+.invoice-table td {
+  padding: 2mm 1.5mm;
+  font-size: 8px;
+  white-space: nowrap;
+}
+
+.invoice-table th {
+  background: #f1f3f5;
+  font-weight: 700;
+}
+
+.invoice-table .col-product {
+  min-width: 34mm;
+  text-align: left;
+}
+
+.invoice-table .left {
+  white-space: normal;
+}
+
+.invoice-bottom {
+  display: grid;
+  grid-template-columns: 1fr 0.85fr;
+  margin-top: 5mm;
+  border: 1px solid #777;
+}
+
+.invoice-tax-summary {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 4mm;
+  border-right: 1px solid #777;
+}
+
+.words {
+  margin-top: 4mm;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.invoice-totals {
+  padding: 3mm 4mm;
+}
+
+.invoice-totals div {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8mm;
+  padding: 1.5mm 0;
+  border-bottom: 1px solid #e2e2e2;
+}
+
+.invoice-totals .total-line {
+  margin-top: 1mm;
+  padding-top: 3mm;
+  border-top: 2px solid #111;
+  border-bottom: 0;
+  font-size: 15px;
+}
+
+.copy-footer {
+  margin-top: 4mm;
+  text-align: right;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+@media screen and (max-width: 900px) {
+  .print-page .invoice-copy {
+    overflow-x: auto;
+    padding: 5mm;
+  }
+
+  .print-page .invoice-table {
+    min-width: 900px;
+  }
+}
+
+@page {
+  size: A4 landscape;
+  margin: 6mm;
+}
+
+@media print {
+  html,
+  body,
+  #root {
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    background: #fff;
+  }
+
+  .print-page {
+    min-height: 0;
+    padding: 0;
+    background: #fff;
+  }
+
+  .print-actions {
+    display: none !important;
+  }
+
+  .print-page .invoice-copy {
+    width: 100%;
+    min-height: 0;
+    margin: 0;
+    padding: 4mm;
+    border: 1px solid #111;
+    break-inside: avoid;
+    page-break-inside: avoid;
+    break-after: page;
+    page-break-after: always;
+  }
+
+  .print-page .invoice-copy:last-child {
+    break-after: auto;
+    page-break-after: auto;
+  }
+}
