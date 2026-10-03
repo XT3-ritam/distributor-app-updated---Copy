@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { Response } from 'express';
 import pool from '../db/index.js';
 import { CustomerSchema } from '../services/schemas.js';
 import { AuthRequest } from '../middleware/auth.js';
@@ -46,14 +46,15 @@ export class CustomerController {
     res.json({ customer: customer.rows[0], balance: balance.rows[0].balance, transactions: rows });
   };
 
-  list = async (req: Request, res: Response) => {
+  list = async (req: AuthRequest, res: Response) => {
     const q = String(req.query.q ?? '').trim();
     const page = Math.max(1, Number(req.query.page ?? 1));
     const limit = Math.min(100, Math.max(1, Number(req.query.limit ?? 30)));
     const offset = (page - 1) * limit;
     const like = `%${q.toLowerCase()}%`;
-    const count = await pool.query('SELECT COUNT(*)::int AS count FROM customers WHERE active = TRUE AND (LOWER(store_name) LIKE $1 OR LOWER(COALESCE(phone,\'\')) LIKE $1)', [like]);
-    const { rows } = await pool.query('SELECT * FROM customers WHERE active = TRUE AND (LOWER(store_name) LIKE $1 OR LOWER(COALESCE(phone,\'\')) LIKE $1) ORDER BY store_name LIMIT $2 OFFSET $3', [like, limit, offset]);
+    const includeInactive = req.user?.role === 'OWNER' && req.query.includeInactive === 'true';
+    const count = await pool.query('SELECT COUNT(*)::int AS count FROM customers WHERE ($2::boolean OR active = TRUE) AND (LOWER(store_name) LIKE $1 OR LOWER(COALESCE(phone,\'\')) LIKE $1)', [like, includeInactive]);
+    const { rows } = await pool.query('SELECT * FROM customers WHERE ($4::boolean OR active = TRUE) AND (LOWER(store_name) LIKE $1 OR LOWER(COALESCE(phone,\'\')) LIKE $1) ORDER BY store_name LIMIT $2 OFFSET $3', [like, limit, offset, includeInactive]);
     res.json({ items: rows, page, limit, total: count.rows[0].count });
   };
 
