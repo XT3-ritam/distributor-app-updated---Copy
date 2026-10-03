@@ -68,6 +68,16 @@ app.get('/api/reports/inward',authenticate,authorize(['OWNER']),reports.inward);
 app.get('/api/settings',authenticate,authorize(['OWNER']),settings.get);
 app.put('/api/settings',authenticate,authorize(['OWNER']),settings.update);
 
+if (process.env.NODE_ENV === 'production') {
+  const clientDist = path.resolve(process.cwd(), '../client/dist');
+  app.use(express.static(clientDist));
+  app.get('/{*path}', (_req, res, next) => {
+    res.sendFile(path.join(clientDist, 'index.html'), (err) => {
+      if (err) next(err);
+    });
+  });
+}
+
 const errorHandler:ErrorRequestHandler=(err,_req,res,_next)=>{if(err instanceof multer.MulterError)return res.status(400).json({error:`Upload error: ${err.message}`});console.error(err);res.status(500).json({error:'Internal server error.'});};
 app.use(errorHandler);
 

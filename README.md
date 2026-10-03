@@ -34,3 +34,13 @@ The app stores customer taxpayer/non-taxpayer status and provides a three-sheet 
 6. The owner creates staff accounts from the Staff page.
 
 Set `GOOGLE_GEMINI_API_KEY` in `server/.env` to enable supplier-bill scanning. The default vision model is the lighter `gemini-3.5-flash-lite`; override it with `GEMINI_VISION_MODEL` if needed. Gemini API access does not require a Gemini Pro subscription, but the free API tier has usage limits. The Gemini API key is server-side only. Do not commit `.env` files or API keys.
+
+## Deploy on Render
+
+The repository includes a Render Blueprint that creates a PostgreSQL database and a single web service that builds and serves both the frontend and backend. It also generates the authentication secrets and runs database migrations automatically.
+
+In Render, choose **New → Blueprint**, connect this GitHub repository, and deploy the Blueprint. No environment variables need to be entered manually. After the deploy succeeds, open the service URL and go to `/setup-owner`; the generated `SETUP_SECRET` is available in the service's Environment settings for the one-time owner setup.
+
+The Blueprint selects Render's free PostgreSQL plan. Free databases are temporary and can expire; use a paid database plan for business data you need to keep. The database created in Render is separate from the local development database and starts empty.
+
+Invoice scanning is disabled on Render until you add `GOOGLE_GEMINI_API_KEY` to the web service's Environment settings. The API key is optional and should not be added to the Blueprint file or GitHub.
