@@ -1,11 +1,19 @@
 {
-  "background_color": "#0f172a",
-  "dir": "ltr",
-  "display": "standalone",
   "name": "PrismX",
-  "orientation": "any",
-  "scope": "/",
   "short_name": "PrismX",
+  "description": "Distributor Order and Billing System",
   "start_url": "/",
-  "theme_color": "#0f172a"
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
+  "icons": [
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
 }
