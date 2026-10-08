@@ -30,8 +30,10 @@ The app stores customer taxpayer/non-taxpayer status and provides a three-sheet 
 2. Copy `server/.env.example` to `.env` and fill in values.
 3. From `server`: `npm install`, then `npm run migrate`, then `npm run dev`.
 4. From `client`: `npm install`, then `npm run dev`.
-5. Open `/setup-owner` and enter the matching `SETUP_SECRET` once.
+5. Set a unique, randomly generated `SETUP_SECRET` in `server/.env`, then open `/setup-owner` locally and enter that same value once. The example value in `.env.example` is only a placeholder; replace it before use.
 6. The owner creates staff accounts from the Staff page.
+
+Local `.env` settings are not committed or deployed. In particular, the local `SETUP_SECRET` is different from the one used by the web version. Never put real secrets in GitHub or share them in chat.
 
 Set `GOOGLE_GEMINI_API_KEY` in `server/.env` to enable supplier-bill scanning. The default vision model is the lighter `gemini-3.5-flash-lite`; override it with `GEMINI_VISION_MODEL` if needed. Gemini API access does not require a Gemini Pro subscription, but the free API tier has usage limits. The Gemini API key is server-side only. Do not commit `.env` files or API keys.
 
@@ -39,7 +41,7 @@ Set `GOOGLE_GEMINI_API_KEY` in `server/.env` to enable supplier-bill scanning. T
 
 The repository includes a Render Blueprint that creates a PostgreSQL database and a single web service that builds and serves both the frontend and backend. It also generates the authentication secrets and runs database migrations automatically.
 
-In Render, choose **New → Blueprint**, connect this GitHub repository, and deploy the Blueprint. No environment variables need to be entered manually. After the deploy succeeds, open the service URL and go to `/setup-owner`; the generated `SETUP_SECRET` is available in the service's Environment settings for the one-time owner setup.
+In Render, choose **New → Blueprint**, connect this GitHub repository, and deploy the Blueprint. No environment variables need to be entered manually. After the deploy succeeds, open the service URL and go to `/setup-owner`; enter the `SETUP_SECRET` shown in that same Render web service's Environment settings. Do not use the local `.env` value or the placeholder in `.env.example` for the web version. If the secret needs to be changed, update `SETUP_SECRET` in Render's Environment settings and wait for the service to redeploy before trying again. Do not commit the actual value to GitHub.
 
 The Blueprint selects Render's free PostgreSQL plan. Free databases are temporary and can expire; use a paid database plan for business data you need to keep. The database created in Render is separate from the local development database and starts empty.
 
