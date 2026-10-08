@@ -37,6 +37,10 @@ Local `.env` settings are not committed or deployed. In particular, the local `S
 
 Set `GOOGLE_GEMINI_API_KEY` in `server/.env` to enable supplier-bill scanning. The default vision model is the lighter `gemini-3.5-flash-lite`; override it with `GEMINI_VISION_MODEL` if needed. Gemini API access does not require a Gemini Pro subscription, but the free API tier has usage limits. The Gemini API key is server-side only. Do not commit `.env` files or API keys.
 
+## Device login
+
+After signing in, a user stays signed in on that device for one year by default. Closing and reopening the browser or installed app does not require another login. Set `SESSION_TOKEN_TTL` (for example, `180d`) to use a different duration. The user can still choose **Logout** on that device; changing `JWT_SECRET` also invalidates all existing sessions.
+
 ## Deploy on Render
 
 The repository includes a Render Blueprint that creates a PostgreSQL database and a single web service that builds and serves both the frontend and backend. It also generates the authentication secrets and runs database migrations automatically.

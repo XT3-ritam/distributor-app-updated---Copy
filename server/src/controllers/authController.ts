@@ -11,7 +11,11 @@ const tokenSecret = () => {
 };
 
 function signUser(user: { id: string; username: string; role: 'OWNER' | 'STAFF' }) {
-  return jwt.sign({ id: user.id, username: user.username, role: user.role }, tokenSecret(), { expiresIn: '12h' });
+  // The client stores this token on the device, so a long-lived token keeps a
+  // trusted device signed in between visits. It is still cleared by Logout or
+  // whenever the server rejects the session.
+  const expiresIn = (process.env.SESSION_TOKEN_TTL || '365d') as jwt.SignOptions['expiresIn'];
+  return jwt.sign({ id: user.id, username: user.username, role: user.role }, tokenSecret(), { expiresIn });
 }
 
 export class AuthController {
